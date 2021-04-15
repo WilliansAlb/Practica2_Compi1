@@ -6,7 +6,7 @@
     },
     {
       "token": "$_Mas",
-      "lexema": "cualquier cosa puede ir acá"
+      "lexema": "+"
     },
     {
       "token": "$_Punto",
@@ -26,15 +26,15 @@
     },
     {
       "token": "$_NUMERO",
-      "lexema": "[0-9]"
+      "lexema": "[0-9]+"
     },
     {
       "token": "$_NUMEROS",
-      "lexema": "[0-9]*"
+      "lexema": "[0-9]?"
     },
     {
       "token": "$_NUMEROS_A",
-      "lexema": "[0-9]+"
+      "lexema": "[0-9]*"
     }
   ],
   "sintactico": {
@@ -83,23 +83,19 @@
           {
             "particiones": [
               {
-                "parte": "%_Prod_A",
+                "parte": "$_P_Ab",
                 "linea": 24,
                 "columna": 15
               },
               {
-                "parte": "%_Prod_A",
+                "parte": "%_Prod_B",
                 "linea": 24,
-                "columna": 24
-              }
-            ]
-          },
-          {
-            "particiones": [
+                "columna": 22
+              },
               {
-                "parte": "%_Prod_A",
+                "parte": "$_P_Ce",
                 "linea": 24,
-                "columna": 36
+                "columna": 31
               }
             ]
           }
@@ -113,18 +109,14 @@
           {
             "particiones": [
               {
-                "parte": "%_Prod_T",
+                "parte": "%_Prod_B",
                 "linea": 25,
                 "columna": 15
-              }
-            ]
-          },
-          {
-            "particiones": [
+              },
               {
                 "parte": "%_Prod_C",
                 "linea": 25,
-                "columna": 27
+                "columna": 24
               }
             ]
           }
@@ -146,15 +138,11 @@
                 "parte": "$_Mas",
                 "linea": 26,
                 "columna": 23
-              }
-            ]
-          },
-          {
-            "particiones": [
+              },
               {
                 "parte": "$_Una_A",
                 "linea": 26,
-                "columna": 32
+                "columna": 29
               }
             ]
           }

@@ -42,6 +42,9 @@ app.post('/analizar',function(req,res,next){
             escribir_terminales.push([dato.lexema,"return '"+dato.token+"';"]);
         }
     }
+    escribir_terminales.push(["\\s+","/* skip whitespace */"]);
+    escribir_terminales.push(["<<EOF>>","return 'EOF';"]);
+    escribir_terminales.push([".","return 'INVALID';"]);
     if (!no_terminales.includes(inicial)){
         errores.push("ERROR: no has definido el no terminal inicial "+inicial);
     }
@@ -77,11 +80,31 @@ app.post('/analizar',function(req,res,next){
         con_produc.push(temp);
     }
     console.log(escribir_terminales);
-    //res.status(200).json({respuesta: responde});
+    var grammar = {
+        "lex": {
+            "rules": escribir_terminales
+        },
+    
+        "bnf": {
+            "numero" :[ "numero $_NUMERO",
+                             "$_Letra"]
+        }
+    };
+    var parser = new Parser(grammar);
+    var parserSource = parser.generate();
+    fs.writeFileSync('./analizador/analizado.js', parserSource);
+    res.status(200).json({errores: errores});
 });
 
 app.get('/cantidad',(req,res)=>{
-    res.status(200).json({cuantos: 1});
+    fs.readFile('./analizador/creados.txt', 'utf-8', (err, data) => {
+        if(err) {
+          console.log('error: ', err);
+        } else {
+            var ar = data.split('%');
+            res.status(200).json({lon: ar.length,archs:data});
+        }
+      });
 });
 
 app.listen(3000,()=>{
