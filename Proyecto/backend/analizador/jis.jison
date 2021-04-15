@@ -17,6 +17,7 @@ sy [sS][yY][nN][tT][aA][xX]
 in [iI][nN][iI][tT][iI][aA][lL]"_"[sS][iI][mM]
 %x string
 %x coment
+%x coment2
 %%
 {wis}              return 'WISON'
 "¿"                   return 'INTERROGACIONA'
@@ -38,16 +39,19 @@ in [iI][nN][iI][tT][iI][aA][lL]"_"[sS][iI][mM]
 <string>("'"|"’")     this.popState();
 "[aA-zZ]"             return 'TODAS'
 "[0-9]"               return 'NUMEROS'
-"*"                   return 'ESTRELLA'
 "+"                   return 'CERRADURA'
 "?"                   return 'INTERROGACIONC'
 ":}}"                  return 'FINSYN'
+"*"                   return 'ESTRELLA'
 ":}"                  return 'FINLEX'
 {int}{frac}?\b        return 'NUMBER'
 {letras}              return 'LETRAS'
 ("#")                 this.begin("coment");
-<coment>[^\n\r]+        return "COMENTARIO";
+<coment>[^\n]+        /*return "COMENTARIO";*/
 <coment>[\n]          this.popState();
+"\\/\\*\\*"               this.begin("coment2");
+<coment2>[^*/]+        /*return "COMENTARIO";*/
+<coment2>[*/]          this.popState();
 {espacio}             /*solo ignora*/
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
@@ -68,27 +72,16 @@ in [iI][nN][iI][tT][iI][aA][lL]"_"[sS][iI][mM]
 %% /* language grammar */
 
 expressions:
-    posibilidad_comentarios bloque_analizar posibilidad_comentarios EOF { return $2;}
+    bloque_analizar  EOF { return $1;}
 ;
 
-posibilidad_comentarios:
-    | cadena_comentarios
-;
-
-cadena_comentarios:
-    COMENTARIO cadena_comentariosP
-;
-
-cadena_comentariosP:
-    | cadena_comentarios
-;
 
 bloque_analizar:
-    WISON posibilidad_comentarios INTERROGACIONA bloque_lexico bloque_sintactico INTERROGACIONC posibilidad_comentarios WISON { $$ = instruccionesAPI.nuevaListaTerms($4,$5); }
+    WISON INTERROGACIONA bloque_lexico bloque_sintactico INTERROGACIONC WISON { $$ = instruccionesAPI.nuevaListaTerms($3,$4); }
 ;
 
 bloque_lexico:
-    posibilidad_comentarios LEXP posibilidad_comentarios INICIOLEX bloque_terminales FINLEX { $$ = $5; }
+     LEXP INICIOLEX bloque_terminales FINLEX { $$ = $3; }
 ;
 
 bloque_terminales:
@@ -97,7 +90,7 @@ bloque_terminales:
 ;
 
 terminal1:
-    TERMINAL IDTERMINAL ASIGNAR asignacion_terminal PUNTOC bloque_comentarios {$$ = instruccionesAPI.nuevoTerminalAgregar($2,$4);}
+    TERMINAL IDTERMINAL ASIGNAR asignacion_terminal PUNTOC  {$$ = instruccionesAPI.nuevoTerminalAgregar($2,$4);}
 ;
 
 asignacion_terminal:
@@ -114,7 +107,7 @@ numerando:
 ;
 
 bloque_sintactico:
-    posibilidad_comentarios SYNTAXP posibilidad_comentarios INICIOSYN bloque_no_terminales FINSYN { $$ = $5; }
+    SYNTAXP INICIOSYN bloque_no_terminales FINSYN { $$ = $3; }
 ;
 
 bloque_no_terminales:
@@ -128,7 +121,7 @@ bloque_asignacion_no:
 
 
 asignacion_no_terminal:
-    NOTERMINAL IDNOTERMINAL PUNTOC bloque_comentarios {$$ = instruccionesAPI.nuevoNoTerminalAgregar($2);}
+    NOTERMINAL IDNOTERMINAL PUNTOC  {$$ = instruccionesAPI.nuevoNoTerminalAgregar($2);}
 ;
 
 bloque_producciones:
@@ -137,7 +130,7 @@ bloque_producciones:
 ;
 
 produccion:
-    IDNOTERMINAL ASIGNARNOTERMINAL posibilidad_comentarios bloque_cadena PUNTOC { $$ = instruccionesAPI.nuevaProduccion($1,this._$.first_line,this._$.first_column,temp); temp=[];}
+    IDNOTERMINAL ASIGNARNOTERMINAL bloque_cadena PUNTOC { $$ = instruccionesAPI.nuevaProduccion($1,this._$.first_line,this._$.first_column,temp); temp=[];}
 ;
 
 bloque_cadena:
@@ -154,8 +147,4 @@ cadena:
 parte_produccion:
     IDTERMINAL	{ $$ = instruccionesAPI.nuevoParte($1,this._$.first_line,this._$.first_column);}
 	| IDNOTERMINAL { $$ = instruccionesAPI.nuevoParte($1,this._$.first_line,this._$.first_column);}
-;
-
-bloque_comentarios:
-    | COMENTARIO
 ;

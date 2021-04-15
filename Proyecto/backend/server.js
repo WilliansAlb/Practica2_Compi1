@@ -21,15 +21,15 @@ app.post('/analizar',function(req,res,next){
     var con_produc = [];
     var errores = [];
     var escribir_terminales = [];
+    console.log(texto);
     var ast = generador.parse(texto);
     var str = JSON.stringify(ast, null, 2);
     fs.writeFileSync('./analizador/gen.json', str);
     var datos = JSON.parse(str);
-    console.log("-------------------------------------------");
     var inicial = datos.sintactico.estado_inicial;
     for (let dato of datos.sintactico.lista_no_terminales){
         if (no_terminales.includes(dato.id)){
-            errores.push("ERROR: tienes repetido un el no terminal "+dato.id);
+            errores.push("ERROR: tienes repetido el no terminal "+dato.id);
         } else {
             no_terminales.push(dato.id);
         }
@@ -84,15 +84,14 @@ app.post('/analizar',function(req,res,next){
         "lex": {
             "rules": escribir_terminales
         },
-    
         "bnf": {
             "numero" :[ "numero $_NUMERO",
                              "$_Letra"]
         }
     };
-    var parser = new Parser(grammar);
-    var parserSource = parser.generate();
-    fs.writeFileSync('./analizador/analizado.js', parserSource);
+    //var parser = new Parser(grammar);
+    //var parserSource = parser.generate();
+    //fs.writeFileSync('./analizador/analizado.js', parserSource);
     res.status(200).json({errores: errores});
 });
 

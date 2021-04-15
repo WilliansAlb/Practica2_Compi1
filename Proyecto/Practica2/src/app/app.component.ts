@@ -38,7 +38,7 @@ export class AppComponent implements AfterViewInit {
         this.myPath = fileList[0].name;
         let reader = new FileReader();
         reader.onloadend = () => this.printFileContents(reader.result);
-        reader.readAsText(fileList[0], 'ISO-8859-1');
+        reader.readAsText(fileList[0]);
       } else {
         alert('¡He dicho archivo de texto!');
       }

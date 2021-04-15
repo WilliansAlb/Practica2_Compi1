@@ -26,15 +26,15 @@
     },
     {
       "token": "$_NUMERO",
-      "lexema": "[0-9]+"
+      "lexema": "[0-9]"
     },
     {
       "token": "$_NUMEROS",
-      "lexema": "[0-9]?"
+      "lexema": "[0-9]*"
     },
     {
       "token": "$_NUMEROS_A",
-      "lexema": "[0-9]*"
+      "lexema": "[0-9]+"
     }
   ],
   "sintactico": {
