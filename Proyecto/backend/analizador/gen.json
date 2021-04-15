@@ -1,0 +1,165 @@
+{
+  "lexico": [
+    {
+      "token": "$_Una_A",
+      "lexema": "a"
+    },
+    {
+      "token": "$_Mas",
+      "lexema": "cualquier cosa puede ir acá"
+    },
+    {
+      "token": "$_Punto",
+      "lexema": "."
+    },
+    {
+      "token": "$_P_Ab",
+      "lexema": "("
+    },
+    {
+      "token": "$_P_Ce",
+      "lexema": "dfasdfa"
+    },
+    {
+      "token": "$_Letra",
+      "lexema": "[aA-zZ]"
+    },
+    {
+      "token": "$_NUMERO",
+      "lexema": "[0-9]"
+    },
+    {
+      "token": "$_NUMEROS",
+      "lexema": "[0-9]*"
+    },
+    {
+      "token": "$_NUMEROS_A",
+      "lexema": "[0-9]+"
+    }
+  ],
+  "sintactico": {
+    "lista_no_terminales": [
+      {
+        "id": "%_Prod_A"
+      },
+      {
+        "id": "%_Prod_B"
+      },
+      {
+        "id": "%_Prod_C"
+      },
+      {
+        "id": "%_S"
+      }
+    ],
+    "estado_inicial": "%_S",
+    "lista_producciones": [
+      {
+        "id_no_terminal": "%_S",
+        "linea": 23,
+        "columna": 3,
+        "producciones": [
+          {
+            "particiones": [
+              {
+                "parte": "%_Prod_A",
+                "linea": 23,
+                "columna": 10
+              },
+              {
+                "parte": "$_FIN",
+                "linea": 23,
+                "columna": 19
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id_no_terminal": "%_Prod_A",
+        "linea": 24,
+        "columna": 3,
+        "producciones": [
+          {
+            "particiones": [
+              {
+                "parte": "%_Prod_A",
+                "linea": 24,
+                "columna": 15
+              },
+              {
+                "parte": "%_Prod_A",
+                "linea": 24,
+                "columna": 24
+              }
+            ]
+          },
+          {
+            "particiones": [
+              {
+                "parte": "%_Prod_A",
+                "linea": 24,
+                "columna": 36
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id_no_terminal": "%_Prod_B",
+        "linea": 25,
+        "columna": 3,
+        "producciones": [
+          {
+            "particiones": [
+              {
+                "parte": "%_Prod_T",
+                "linea": 25,
+                "columna": 15
+              }
+            ]
+          },
+          {
+            "particiones": [
+              {
+                "parte": "%_Prod_C",
+                "linea": 25,
+                "columna": 27
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id_no_terminal": "%_Prod_C",
+        "linea": 26,
+        "columna": 3,
+        "producciones": [
+          {
+            "particiones": [
+              {
+                "parte": "$_Una_A",
+                "linea": 26,
+                "columna": 15
+              },
+              {
+                "parte": "$_Mas",
+                "linea": 26,
+                "columna": 23
+              }
+            ]
+          },
+          {
+            "particiones": [
+              {
+                "parte": "$_Una_A",
+                "linea": 26,
+                "columna": 32
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
