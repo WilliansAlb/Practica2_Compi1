@@ -14,12 +14,13 @@
 %{
 	const nodosAPI = require('C:/Users/willi/OneDrive/Escritorio/Proyectos 2021/Practica2_Compi1/Proyecto/backend/creados/nodos').nodosAPI;
 var temp = [];
+var responde;
 %}
 %start S
 %%
 S:
-	Prod_A EOF {temp.push(nodosAPI.agregarNodo('Prod_A1','S'));temp.push(nodosAPI.agregarNodo('S','')); return temp;}
+	Prod_A EOF {temp.push(nodosAPI.agregarNodo('Prod_A','S','Prod_A'));temp.push(nodosAPI.agregarNodo('S','','ESTADO INICIAL S')); responde = temp; temp = []; return responde;}
 ;
 Prod_A:
-	Una_A Mas Una_A {temp.push(nodosAPI.agregarNodo($1,'Una_A1')); temp.push(nodosAPI.agregarNodo('Una_A1','Prod_A'));temp.push(nodosAPI.agregarNodo($2,'Mas2')); temp.push(nodosAPI.agregarNodo('Mas2','Prod_A'));temp.push(nodosAPI.agregarNodo($3,'Una_A3')); temp.push(nodosAPI.agregarNodo('Una_A3','Prod_A'));}
+	Una_A Mas Una_A {temp.push(nodosAPI.agregarNodo($1+"1",'Una_A1',$1)); temp.push(nodosAPI.agregarNodo('Una_A1','Prod_A','Una_A'));temp.push(nodosAPI.agregarNodo($2+"2",'Mas2',$2)); temp.push(nodosAPI.agregarNodo('Mas2','Prod_A','Mas'));temp.push(nodosAPI.agregarNodo($3+"3",'Una_A3',$3)); temp.push(nodosAPI.agregarNodo('Una_A3','Prod_A','Una_A'));}
 ;

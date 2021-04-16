@@ -135,4 +135,8 @@ export class AppComponent implements AfterViewInit {
       });
     }
   }
+
+  obtenerTextoAnalizador(txt:string){
+    console.log(txt);
+  }
 }

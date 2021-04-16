@@ -7,6 +7,7 @@ exp  [eE][-+]?[0-9]+
 frac  "."[0-9]+
 letras [a-zA-Z]+
 espacio [\s|\n|\t|\r]+
+mejor ([a-zA-Z]|[0-9])+
 identificador [a-zA-Z]+([a-zA-Z]|[0-9]+)*
 especial [á-ü]|[«#$%&/()=*.+-]
 wis [W][i][s][o][n]
@@ -32,8 +33,8 @@ in [I][n][i][t][i][a][l]"_"[S][i][m]
 "<="                  return 'ASIGNARNOTERMINAL'
 ";"                  return 'PUNTOC'
 ("|"|"OR")            	return 'OR'
-"$_"({identificador}|"_")+   return 'IDTERMINAL'
-"%_"({identificador}|"_")+   return 'IDNOTERMINAL'
+"$_"{identificador}("_"{mejor}*)*   return 'IDTERMINAL'
+"%_"{identificador}("_"{mejor}*)*    return 'IDNOTERMINAL'
 ("'"|"‘")             this.begin("string");
 <string>[^'’]+       return "CARACTER";
 <string>("'"|"’")     this.popState();
@@ -81,7 +82,7 @@ expressions:
 
 bloque_analizar:
     WISON INTERROGACIONA bloque_lexico bloque_sintactico INTERROGACIONC WISON { $$ = instruccionesAPI.nuevaListaTerms($3,$4,'false',''); }
-	| error { temp_errores.push(instruccionesAPI.nuevoError(yytext,this._$.first_line,this._$.first_column,'Sintactico')); }
+	| error { temp_errores =[]; temp_errores.push(instruccionesAPI.nuevoError(yytext,this._$.first_line,this._$.first_column,'Sintactico')); }
 ;
 
 bloque_lexico:

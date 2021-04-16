@@ -390,8 +390,13 @@
       <div class="textarea-wrapper" >
         <textarea #entrada rows="17" cols="40" id="contenido-archivo" (change)="textoentrada = entrada.value; myPath=''" ng-model="myTextarea"></textarea>
       </div>
-      <div class="card" (click)="obtener()" tabindex="0">
-        <span>Enviar entrada</span>
+      <div class="agrupados">
+        <div class="card" (click)="obtenerTextoAnalizador(seleccion)" tabindex="0">
+          <span>Ver gramatica</span>
+        </div>
+        <div class="card" (click)="obtener()" *ngIf="textoentrada!=''" tabindex="0">
+          <span>Enviar entrada</span>
+        </div>
       </div>
     </div>
   <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
