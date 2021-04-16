@@ -56,19 +56,19 @@
     "lista_producciones": [
       {
         "id_no_terminal": "%_S",
-        "linea": 23,
+        "linea": 34,
         "columna": 3,
         "producciones": [
           {
             "particiones": [
               {
                 "parte": "%_Prod_A",
-                "linea": 23,
+                "linea": 34,
                 "columna": 10
               },
               {
                 "parte": "$_FIN",
-                "linea": 23,
+                "linea": 34,
                 "columna": 19
               }
             ]
@@ -77,24 +77,24 @@
       },
       {
         "id_no_terminal": "%_Prod_A",
-        "linea": 24,
+        "linea": 35,
         "columna": 3,
         "producciones": [
           {
             "particiones": [
               {
                 "parte": "$_P_Ab",
-                "linea": 24,
+                "linea": 35,
                 "columna": 15
               },
               {
                 "parte": "%_Prod_B",
-                "linea": 24,
+                "linea": 35,
                 "columna": 22
               },
               {
                 "parte": "$_P_Ce",
-                "linea": 24,
+                "linea": 35,
                 "columna": 31
               }
             ]
@@ -103,19 +103,19 @@
       },
       {
         "id_no_terminal": "%_Prod_B",
-        "linea": 25,
+        "linea": 36,
         "columna": 3,
         "producciones": [
           {
             "particiones": [
               {
                 "parte": "%_Prod_B",
-                "linea": 25,
+                "linea": 36,
                 "columna": 15
               },
               {
                 "parte": "%_Prod_C",
-                "linea": 25,
+                "linea": 36,
                 "columna": 24
               }
             ]
@@ -124,24 +124,24 @@
       },
       {
         "id_no_terminal": "%_Prod_C",
-        "linea": 26,
+        "linea": 37,
         "columna": 3,
         "producciones": [
           {
             "particiones": [
               {
                 "parte": "$_Una_A",
-                "linea": 26,
+                "linea": 37,
                 "columna": 15
               },
               {
                 "parte": "$_Mas",
-                "linea": 26,
+                "linea": 37,
                 "columna": 23
               },
               {
                 "parte": "$_Una_A",
-                "linea": 26,
+                "linea": 37,
                 "columna": 29
               }
             ]

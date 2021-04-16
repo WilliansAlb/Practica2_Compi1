@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const multipart = require('connect-multiparty');
 const generador = require('./analizador/jis');
 var Parser = require('jison').Parser;
+const escr = require('./analizador/escribirJison');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -79,24 +80,12 @@ app.post('/analizar',function(req,res,next){
         numero_produccion = 1;
         con_produc.push(temp);
     }
-    console.log(escribir_terminales);
-    var grammar = {
-        "lex": {
-            "rules": escribir_terminales
-        },
-        "bnf": {
-            "numero" :[ "numero $_NUMERO",
-                             "$_Letra"]
-        }
-    };
-    //var parser = new Parser(grammar);
-    //var parserSource = parser.generate();
-    //fs.writeFileSync('./analizador/analizado.js', parserSource);
+    escr.escrituraAPI.escribir(datos);
     res.status(200).json({errores: errores});
 });
 
 app.get('/cantidad',(req,res)=>{
-    fs.readFile('./analizador/creados.txt', 'utf-8', (err, data) => {
+    fs.readFile('./creados/creados.txt', 'utf-8', (err, data) => {
         if(err) {
           console.log('error: ', err);
         } else {

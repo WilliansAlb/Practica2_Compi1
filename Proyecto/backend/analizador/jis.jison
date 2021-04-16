@@ -49,9 +49,9 @@ in [iI][nN][iI][tT][iI][aA][lL]"_"[sS][iI][mM]
 ("#")                 this.begin("coment");
 <coment>[^\n]+        /*return "COMENTARIO";*/
 <coment>[\n]          this.popState();
-"\\/\\*\\*"               this.begin("coment2");
+"/**"                 this.begin("coment2");
 <coment2>[^*/]+        /*return "COMENTARIO";*/
-<coment2>[*/]          this.popState();
+<coment2>"*/"          this.popState();
 {espacio}             /*solo ignora*/
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
