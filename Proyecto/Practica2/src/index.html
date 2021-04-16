@@ -8,9 +8,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 
 <body style="background-color: darkgray;">
   <app-root></app-root>
+  <!-- CHART CONTAINER -->
+  <div style="display: grid;grid-template-columns: 100%;justify-content: center;align-items: center;">
+    <div id="myChart" class="chart--container"></div>
+    <button id="boton">VER ULTIMO ARBOL GENERADO</button>
+  </div>
+  <script>
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
+    // because this Javascript is injected into the document head
+    window.addEventListener('load', () => {
+      let chartData = [];
+
+      let chartConfig = {
+        type: 'tree',
+        options: {
+          link: {
+            aspect: 'arc'
+          },
+          maxSize: 15,
+          minSize: 5,
+          node: {
+            type: 'circle',
+            tooltip: {
+              padding: '8px 10px',
+              borderRadius: '3px',
+            }
+          }
+        },
+        series: chartData
+      };
+
+      zingchart.render({
+        id: 'myChart',
+        data: chartConfig,
+        height: '200px',
+        width: '100%',
+        output: 'canvas'
+      });
+
+      // change tree layout
+      document.getElementById('boton').addEventListener('click', function (e) {
+        fetch('http://localhost:3000/entrada?para=1').then((resp) => resp.json()).then(function (data) {
+          var pu = [];
+          console.log(data.array1);
+          for (let i = 0; i < data.array1.length; i++){
+            data.array1[i].value = 3000;
+            pu.push(data.array1[i]);
+          }
+          chartConfig.series = pu;
+          zingchart.exec('myChart', 'setdata', {
+            data: chartConfig
+          });
+        }).catch(function (error) {
+          console.log(error);
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>

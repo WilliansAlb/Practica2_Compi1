@@ -1,153 +1,42 @@
-{
-  "lexico": [
-    {
-      "token": "$_Una_A",
-      "lexema": "a"
-    },
-    {
-      "token": "$_Mas",
-      "lexema": "+"
-    },
-    {
-      "token": "$_Punto",
-      "lexema": "."
-    },
-    {
-      "token": "$_P_Ab",
-      "lexema": "("
-    },
-    {
-      "token": "$_P_Ce",
-      "lexema": "dfasdfa"
-    },
-    {
-      "token": "$_Letra",
-      "lexema": "[aA-zZ]"
-    },
-    {
-      "token": "$_NUMERO",
-      "lexema": "[0-9]"
-    },
-    {
-      "token": "$_NUMEROS",
-      "lexema": "[0-9]*"
-    },
-    {
-      "token": "$_NUMEROS_A",
-      "lexema": "[0-9]+"
-    }
-  ],
-  "sintactico": {
-    "lista_no_terminales": [
-      {
-        "id": "%_Prod_A"
-      },
-      {
-        "id": "%_Prod_B"
-      },
-      {
-        "id": "%_Prod_C"
-      },
-      {
-        "id": "%_S"
-      }
-    ],
-    "estado_inicial": "%_S",
-    "lista_producciones": [
-      {
-        "id_no_terminal": "%_S",
-        "linea": 34,
-        "columna": 3,
-        "producciones": [
-          {
-            "particiones": [
-              {
-                "parte": "%_Prod_A",
-                "linea": 34,
-                "columna": 10
-              },
-              {
-                "parte": "$_FIN",
-                "linea": 34,
-                "columna": 19
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id_no_terminal": "%_Prod_A",
-        "linea": 35,
-        "columna": 3,
-        "producciones": [
-          {
-            "particiones": [
-              {
-                "parte": "$_P_Ab",
-                "linea": 35,
-                "columna": 15
-              },
-              {
-                "parte": "%_Prod_B",
-                "linea": 35,
-                "columna": 22
-              },
-              {
-                "parte": "$_P_Ce",
-                "linea": 35,
-                "columna": 31
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id_no_terminal": "%_Prod_B",
-        "linea": 36,
-        "columna": 3,
-        "producciones": [
-          {
-            "particiones": [
-              {
-                "parte": "%_Prod_B",
-                "linea": 36,
-                "columna": 15
-              },
-              {
-                "parte": "%_Prod_C",
-                "linea": 36,
-                "columna": 24
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id_no_terminal": "%_Prod_C",
-        "linea": 37,
-        "columna": 3,
-        "producciones": [
-          {
-            "particiones": [
-              {
-                "parte": "$_Una_A",
-                "linea": 37,
-                "columna": 15
-              },
-              {
-                "parte": "$_Mas",
-                "linea": 37,
-                "columna": 23
-              },
-              {
-                "parte": "$_Una_A",
-                "linea": 37,
-                "columna": 29
-              }
-            ]
-          }
-        ]
-      }
-    ]
+[
+  {
+    "id": "a1",
+    "parent": "Una_A1",
+    "name": "a"
+  },
+  {
+    "id": "Una_A1",
+    "parent": "Prod_A",
+    "name": "Una_A"
+  },
+  {
+    "id": "+2",
+    "parent": "Mas2",
+    "name": "+"
+  },
+  {
+    "id": "Mas2",
+    "parent": "Prod_A",
+    "name": "Mas"
+  },
+  {
+    "id": "a3",
+    "parent": "Una_A3",
+    "name": "a"
+  },
+  {
+    "id": "Una_A3",
+    "parent": "Prod_A",
+    "name": "Una_A"
+  },
+  {
+    "id": "Prod_A",
+    "parent": "S",
+    "name": "Prod_A"
+  },
+  {
+    "id": "S",
+    "parent": "",
+    "name": "ESTADO INICIAL S"
   }
-}
+]

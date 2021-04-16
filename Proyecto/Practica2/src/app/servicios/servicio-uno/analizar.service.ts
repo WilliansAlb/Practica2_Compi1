@@ -16,6 +16,14 @@ export class AnalizarService {
     return con;
   }
 
+  analizarCon(texto:string): Observable <any>{
+    const body = {
+      text: texto
+    }
+    let con = this.http.post('http://localhost:3000/entrada',body);
+    return con;
+  }
+
   obtenerCuantos(): Observable <any>{
     let con = this.http.get('http://localhost:3000/cantidad');
     return con;

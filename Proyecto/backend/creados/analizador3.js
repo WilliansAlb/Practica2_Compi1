@@ -71,34 +71,28 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var principal = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,4],$V1=[2,2],$V2=[6,10,11,15,16,22,33,34,39],$V3=[1,28],$V4=[1,32],$V5=[38,43],$V6=[2,34],$V7=[1,51],$V8=[1,59],$V9=[18,21],$Va=[1,67],$Vb=[1,66],$Vc=[2,32];
+var parser = (function(){
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o};
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"expressions":3,"posibilidad_comentarios":4,"bloque_analizar":5,"EOF":6,"cadena_comentarios":7,"COMENTARIO":8,"cadena_comentariosP":9,"WISON":10,"INTERROGACIONA":11,"bloque_lexico":12,"bloque_sintactico":13,"INTERROGACIONC":14,"LEXP":15,"INICIOLEX":16,"bloque_terminales":17,"FINLEX":18,"terminal1":19,"bloque_terminalesP":20,"TERMINAL":21,"IDTERMINAL":22,"ASIGNAR":23,"asignacion_terminal":24,"PUNTOC":25,"bloque_comentarios":26,"CARACTER":27,"TODAS":28,"NUMEROS":29,"numerando":30,"ESTRELLA":31,"CERRADURA":32,"SYNTAXP":33,"INICIOSYN":34,"bloque_no_terminales":35,"FINSYN":36,"bloque_asignacion_no":37,"SIMBOLOINICIAL":38,"IDNOTERMINAL":39,"bloque_producciones":40,"asignacion_no_terminal":41,"bloque_asignacion_noP":42,"NOTERMINAL":43,"produccion":44,"bloque_produccionesP":45,"ASIGNARNOTERMINAL":46,"cadena_no_terminales":47,"cadena_no_terminalesP":48,"$accept":0,"$end":1},
-terminals_: {2:"error",6:"EOF",8:"COMENTARIO",10:"WISON",11:"INTERROGACIONA",14:"INTERROGACIONC",15:"LEXP",16:"INICIOLEX",18:"FINLEX",21:"TERMINAL",22:"IDTERMINAL",23:"ASIGNAR",25:"PUNTOC",27:"CARACTER",28:"TODAS",29:"NUMEROS",31:"ESTRELLA",32:"CERRADURA",33:"SYNTAXP",34:"INICIOSYN",36:"FINSYN",38:"SIMBOLOINICIAL",39:"IDNOTERMINAL",43:"NOTERMINAL",46:"ASIGNARNOTERMINAL"},
-productions_: [0,[3,4],[4,0],[4,1],[7,2],[9,0],[9,1],[5,8],[12,6],[17,2],[20,0],[20,1],[19,6],[24,1],[24,1],[24,2],[30,0],[30,1],[30,1],[30,1],[13,6],[35,5],[37,2],[42,0],[42,1],[41,4],[40,2],[45,0],[45,1],[44,5],[47,2],[47,2],[48,0],[48,1],[26,0],[26,1]],
+symbols_: {"error":2,"S":3,"Prod_A":4,"EOF":5,"Una_A":6,"Mas":7,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"Una_A",7:"Mas"},
+productions_: [0,[3,2],[4,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
- return $$[$0-2];
+temp.push(nodosAPI.agregarNodo('Prod_A','S','Prod_A'));temp.push(nodosAPI.agregarNodo('S','','ESTADO INICIAL S')); return temp;
 break;
-case 9: case 22:
-$$[$0].push($$[$0-1]); this.$ = $$[$0]
-break;
-case 12:
-this.$ = instruccionesAPI.nuevoTerminalAgregar($$[$0-4],$$[$0-2]);
-break;
-case 25:
-this.$ = instruccionesAPI.nuevoNoTerminalAgregar($$[$0-2]);
+case 2:
+temp.push(nodosAPI.agregarNodo($$[$0-2]+"1",'Una_A1',$$[$0-2])); temp.push(nodosAPI.agregarNodo('Una_A1','Prod_A','Una_A'));temp.push(nodosAPI.agregarNodo($$[$0-1]+"2",'Mas2',$$[$0-1])); temp.push(nodosAPI.agregarNodo('Mas2','Prod_A','Mas'));temp.push(nodosAPI.agregarNodo($$[$0]+"3",'Una_A3',$$[$0])); temp.push(nodosAPI.agregarNodo('Una_A3','Prod_A','Una_A'));
 break;
 }
 },
-table: [{3:1,4:2,7:3,8:$V0,10:$V1},{1:[3]},{5:5,10:[1,6]},o($V2,[2,3]),o($V2,[2,5],{9:7,7:8,8:$V0}),{4:9,6:$V1,7:3,8:$V0},{4:10,7:3,8:$V0,11:$V1},o($V2,[2,4]),o($V2,[2,6]),{6:[1,11]},{11:[1,12]},{1:[2,1]},{4:14,7:3,8:$V0,12:13,15:$V1},{4:16,7:3,8:$V0,13:15,33:$V1},{15:[1,17]},{14:[1,18]},{33:[1,19]},{4:20,7:3,8:$V0,16:$V1},{4:21,7:3,8:$V0,10:$V1},{4:22,7:3,8:$V0,34:$V1},{16:[1,23]},{10:[1,24]},{34:[1,25]},{17:26,19:27,21:$V3},o([6,8],[2,7]),{35:29,37:30,41:31,43:$V4},{18:[1,33]},{17:35,18:[2,10],19:27,20:34,21:$V3},{22:[1,36]},{36:[1,37]},{38:[1,38]},{37:40,38:[2,23],41:31,42:39,43:$V4},{39:[1,41]},o([8,33],[2,8]),{18:[2,9]},{18:[2,11]},{23:[1,42]},{14:[2,20]},{39:[1,43]},{38:[2,22]},{38:[2,24]},{25:[1,44]},{24:45,27:[1,46],28:[1,47],29:[1,48]},{25:[1,49]},o($V5,$V6,{26:50,8:$V7}),{25:[1,52]},{25:[2,13]},{25:[2,14]},{14:[1,56],25:[2,16],30:53,31:[1,54],32:[1,55]},{39:$V8,40:57,44:58},o($V5,[2,25]),o([18,21,38,43],[2,35]),o($V9,$V6,{26:60,8:$V7}),{25:[2,15]},{25:[2,17]},{25:[2,18]},{25:[2,19]},{36:[2,21]},{36:[2,27],39:$V8,40:62,44:58,45:61},{46:[1,63]},o($V9,[2,12]),{36:[2,26]},{36:[2,28]},o([22,39],$V1,{7:3,4:64,8:$V0}),{22:$Va,39:$Vb,47:65},{25:[1,68]},{22:$Va,25:$Vc,39:$Vb,47:70,48:69},{22:$Va,25:$Vc,39:$Vb,47:70,48:71},o([36,39],[2,29]),{25:[2,30]},{25:[2,33]},{25:[2,31]}],
-defaultActions: {11:[2,1],34:[2,9],35:[2,11],37:[2,20],39:[2,22],40:[2,24],46:[2,13],47:[2,14],53:[2,15],54:[2,17],55:[2,18],56:[2,19],57:[2,21],61:[2,26],62:[2,28],69:[2,30],70:[2,33],71:[2,31]},
+table: [{3:1,4:2,6:[1,3]},{1:[3]},{5:[1,4]},{7:[1,5]},{1:[2,1]},{6:[1,6]},{5:[2,2]}],
+defaultActions: {4:[2,1],6:[2,2]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -246,7 +240,8 @@ parse: function parse(input) {
     return true;
 }};
 
-	const instruccionesAPI	= require('./instrucciones').instruccionesAPI;
+	const nodosAPI = require('C:/Users/willi/OneDrive/Escritorio/Proyectos 2021/Practica2_Compi1/Proyecto/backend/creados/nodos').nodosAPI;
+var temp = [];
 /* generated by jison-lex 0.3.4 */
 var lexer = (function(){
 var lexer = ({
@@ -575,76 +570,30 @@ options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
-case 0:return 10
+case 0:return "Una_A";
 break;
-case 1:return 11
+case 1:return "Mas";
 break;
-case 2:return 15
+case 2:return "Punto";
 break;
-case 3:return 16
+case 3:return "P_Ab";
 break;
-case 4:return 21
+case 4:return "P_Ce";
 break;
-case 5:return 43
+case 5:return "Letra";
 break;
-case 6:return 33
+case 6:return "NUMERO";
 break;
-case 7:return 38
+case 7:return "NUMEROS_A";
 break;
-case 8:return 34
+case 8:return "EOF"
 break;
-case 9:return 23
-break;
-case 10:return 46
-break;
-case 11:return 25
-break;
-case 12:return 'O'
-break;
-case 13:return 22
-break;
-case 14:return 39
-break;
-case 15:this.begin("string");
-break;
-case 16:return "CARACTER";
-break;
-case 17:this.popState();
-break;
-case 18:return 28
-break;
-case 19:return 29
-break;
-case 20:return 31
-break;
-case 21:return 32
-break;
-case 22:return 14
-break;
-case 23:return 36
-break;
-case 24:return 18
-break;
-case 25:return 'NUMBER'
-break;
-case 26:return 'LETRAS'
-break;
-case 27:this.begin("coment");
-break;
-case 28:return "COMENTARIO";
-break;
-case 29:this.popState();
-break;
-case 30:/*solo ignora*/
-break;
-case 31:return 6
-break;
-case 32:return 'INVALID'
+case 9:return "INVALID"
 break;
 }
 },
-rules: [/^(?:([wW][iI][sS][oO][nN]))/,/^(?:¿)/,/^(?:([lL][eE][xX]))/,/^(?:\{:)/,/^(?:([tT][eE][rR][mM][iI][nN][aA][lL]))/,/^(?:([nN][oO]_[tT][eE][rR][mM][iI][nN][aA][lL]))/,/^(?:([sS][yY][nN][tT][aA][xX]))/,/^(?:([iI][nN][iI][tT][iI][aA][lL]_[sS][iI][mM]))/,/^(?:\{\{:)/,/^(?:<-)/,/^(?:<=)/,/^(?:;)/,/^(?:\|)/,/^(?:\$_(([a-zA-Z]+([a-zA-Z]|[0-9]+)*)|_)+)/,/^(?:%_(([a-zA-Z]+([a-zA-Z]|[0-9]+)*)|_)+)/,/^(?:('|‘))/,/^(?:[^'’]+)/,/^(?:('|’))/,/^(?:\[aA-zZ\])/,/^(?:\[0-9\])/,/^(?:\*)/,/^(?:\+)/,/^(?:\?)/,/^(?::\}\})/,/^(?::\})/,/^(?:(-?([0-9]|[1-9][0-9]+))(\.[0-9]+)?\b)/,/^(?:([a-zA-Z]+))/,/^(?:(#))/,/^(?:[^\n\r]+)/,/^(?:[\n])/,/^(?:([\s|\n|\t|\r]+))/,/^(?:$)/,/^(?:.)/],
-conditions: {"coment":{"rules":[28,29],"inclusive":false},"string":{"rules":[16,17],"inclusive":false},"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,24,25,26,27,30,31,32],"inclusive":true}}
+rules: [/^(?:a\b)/,/^(?:\+)/,/^(?:\.)/,/^(?:\()/,/^(?:dfasdfa\b)/,/^(?:[aA-zZ])/,/^(?:[0-9])/,/^(?:[0-9]+)/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9],"inclusive":true}}
 });
 return lexer;
 })();
@@ -658,9 +607,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = principal;
-exports.Parser = principal.Parser;
-exports.parse = function () { return principal.parse.apply(principal, arguments); };
+exports.parser = parser;
+exports.Parser = parser.Parser;
+exports.parse = function () { return parser.parse.apply(parser, arguments); };
 exports.main = function commonjsMain (args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');

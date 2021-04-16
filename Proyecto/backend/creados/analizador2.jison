@@ -1,10 +1,25 @@
 %lex
-"a"     return "$_Una_A";
-"+"     return "$_Mas";
-"."     return "$_Punto";
-"("     return "$_P_Ab";
-"dfasdfa"     return "$_P_Ce";
-[aA-zZ]     return "$_Letra";
-[0-9]     return "$_NUMERO";
-[0-9]*     return "$_NUMEROS";
-[0-9]+     return "$_NUMEROS_A";
+%%
+"a"			return "Una_A";
+"+"			return "Mas";
+"."			return "Punto";
+"("			return "P_Ab";
+"dfasdfa"			return "P_Ce";
+[aA-zZ]			return "Letra";
+[0-9]			return "NUMERO";
+[0-9]+			return "NUMEROS_A";
+<<EOF>>			return "EOF"
+.			return "INVALID"
+/lex
+%{
+	const nodosAPI = require('C:/Users/willi/OneDrive/Escritorio/Proyectos 2021/Practica2_Compi1/Proyecto/backend/creados/nodos').nodosAPI;
+var temp = [];
+%}
+%start S
+%%
+S:
+	Prod_A EOF {temp.push(nodosAPI.agregarNodo('Prod_A','S'));temp.push(nodosAPI.agregarNodo('S','')); return temp;}
+;
+Prod_A:
+	Una_A Mas Una_A {temp.push(nodosAPI.agregarNodo($1,'Una_A1')); temp.push(nodosAPI.agregarNodo('Una_A1','Prod_A'));temp.push(nodosAPI.agregarNodo($2,'Mas2')); temp.push(nodosAPI.agregarNodo('Mas2','Prod_A'));temp.push(nodosAPI.agregarNodo($3,'Una_A3')); temp.push(nodosAPI.agregarNodo('Una_A3','Prod_A'));}
+;

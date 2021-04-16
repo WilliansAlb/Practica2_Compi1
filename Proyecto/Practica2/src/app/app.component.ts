@@ -26,6 +26,21 @@ export class AppComponent implements AfterViewInit {
     this.nombres = [];
     this.errores = [];
   }
+  config:zingchart.graphset = {
+    type: 'line',
+    series: [{
+      values: [
+        { id: 'S', parent: '', name: 'S' },
+        { id: 'Prod_A', parent: 'S', name: 'Prod_A', value: 3000 },
+        { id: 'Una_A3', parent: 'Prod_A', name: 'Una_A3', value: 3000 },
+        { id: 'a3', parent: 'Una_A3', name: 'a', value: 3000 },
+        { id: 'Mas2', parent: 'Prod_A', name: 'Mas2', value: 3000 },
+        { id: '+', parent: 'Mas2', name: '+', value: 3000 },
+        { id: 'Una_A1', parent: 'Prod_A', name: 'Una_A1', value: 3000 },
+        { id: 'a1', parent: 'Una_A1', name: 'a', value: 3000 },
+      ]
+    }],
+  };
   hacerClick() {
     $("#archivo").click();
   }
@@ -85,7 +100,7 @@ export class AppComponent implements AfterViewInit {
         if (data.lon >= 1) {
           var ss = data.archs.split("%");
           if (ss.length >= 1) {
-            if (ss[0]!=''){
+            if (ss[0] != '') {
               this.cantidad = data.lon;
               for (let i = 0; i < ss.length; i++) {
                 this.nombres.push(ss[i]);
@@ -106,6 +121,12 @@ export class AppComponent implements AfterViewInit {
     this.texto.nativeElement.value = '';
   }
   ver(texto: string) {
-    console.log(texto);
+    this.ser.analizarCon(texto).subscribe(data => {
+      console.log(data);
+    }, error => {
+      let errorMessage = <any>error;
+      console.log({ errorAnalizar: errorMessage })
+      alert("Hubo un los datos")
+    });
   }
 }
