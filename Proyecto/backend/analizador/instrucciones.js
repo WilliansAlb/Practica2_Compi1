@@ -26,10 +26,12 @@ const instruccionesAPI = {
 		var no_terms = []; 
 		no_terms.push(no_terminales);
 		return no_terms;
-	},nuevaListaTerms: function(listado, listado2){
+	},nuevaListaTerms: function(listado, listado2, errores,errando){
 		return {
 			lexico: listado,
-			sintactico: listado2
+			sintactico: listado2,
+			errores: errores,
+			errando: errando
 		}
 	},nuevaProduccion: function(id,linea,columna,produccion){
 		return {
@@ -62,6 +64,13 @@ const instruccionesAPI = {
 		return {
 			particiones: lis
 		}	
+	},nuevoError: function(parte,linea,columna,tipo){
+		return {
+			parte: parte,
+			linea: linea,
+			columna: columna,
+			tipo: tipo
+		}
 	}
 }
 module.exports.instruccionesAPI = instruccionesAPI;

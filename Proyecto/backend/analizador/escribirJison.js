@@ -1,6 +1,5 @@
 const jison = require('jison');
 const fs = require('fs');
-
 function escribiendo_doc(json){
     var texto = "%lex\n%%\n";
     for (let dato of json.lexico){
@@ -14,7 +13,7 @@ function escribiendo_doc(json){
     texto+=".\t\t\treturn \"INVALID\"\n";
     texto += "/lex\n";
     texto += "%{\n";
-    texto += "\tconst nodosAPI = require('C:/Users/willi/OneDrive/Escritorio/Proyectos 2021/Practica2_Compi1/Proyecto/backend/creados/nodos').nodosAPI;\nvar temp = [];\n%}\n";
+    texto += "\tconst nodosAPI = require('C:/Users/willi/OneDrive/Escritorio/Proyectos 2021/Practica2_Compi1/Proyecto/backend/creados/nodos').nodosAPI;\nvar temp = [];\nvar responde;\n%}\n";
     texto += "%start "+json.sintactico.estado_inicial.replace("%_","")+"\n%%\n";
     for (let dato of json.sintactico.lista_producciones){
         texto+= dato.id_no_terminal.replace("%_","")+":\n\t";
@@ -35,7 +34,7 @@ function escribiendo_doc(json){
             }
             if (dato.id_no_terminal===json.sintactico.estado_inicial){
                 texto+= "EOF ";
-                otro+= "temp.push(nodosAPI.agregarNodo('"+sin2+"','','ESTADO INICIAL "+sin2+"')); return temp;";
+                otro+= "temp.push(nodosAPI.agregarNodo('"+sin2+"','','ESTADO INICIAL "+sin2+"')); responde = temp; temp = []; return responde;";
             }
             texto+= otro+"}";
             if (conteo==Object.keys(dato.producciones).length){

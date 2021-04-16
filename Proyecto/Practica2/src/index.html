@@ -15,10 +15,14 @@
 <body style="background-color: darkgray;">
   <app-root></app-root>
   <!-- CHART CONTAINER -->
-  <div style="display: grid;grid-template-columns: 100%;justify-content: center;align-items: center;">
-    <div id="myChart" class="chart--container"></div>
-    <button id="boton">VER ULTIMO ARBOL GENERADO</button>
+  <div style="display: none;" id="ocultado">
+    <h1>Ultimo arbol generado</h1>
+    <div style="display: grid;grid-template-columns: 100%;justify-content: center;align-items: center;">
+      <div id="myChart" class="chart--container"></div>
+      <button id="boton" style="display: none;">VER ULTIMO ARBOL GENERADO</button>
+    </div>
   </div>
+  
   <script>
     ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
     // because this Javascript is injected into the document head
@@ -54,6 +58,7 @@
 
       // change tree layout
       document.getElementById('boton').addEventListener('click', function (e) {
+        document.getElementById("ocultado").style.display="";
         fetch('http://localhost:3000/entrada?para=1').then((resp) => resp.json()).then(function (data) {
           var pu = [];
           console.log(data.array1);
@@ -72,5 +77,4 @@
     });
   </script>
 </body>
-
 </html>
